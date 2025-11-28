@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+QuantumIceBox = "07707f98-0760-4715-9a93-38eb460f0166"
+
+[sources]
+QuantumIceBox = {path = ".."}
