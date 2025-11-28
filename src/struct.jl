@@ -1,3 +1,4 @@
+export QuantumSpinGlass, Coupling
 
 """
 H = \\sum_{m} h_m a_m + \\sum{m, n} u_{m n} a_m a_n 

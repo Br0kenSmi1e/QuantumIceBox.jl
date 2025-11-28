@@ -1,5 +1,8 @@
 module QuantumIceBox
 
-# Write your package code here.
+using Yao
+
+include("struct.jl")
+include("hamiltonian.jl")
 
 end

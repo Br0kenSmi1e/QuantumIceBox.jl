@@ -1,6 +1,6 @@
 using QuantumIceBox
 using Test
 
-@testset "QuantumIceBox.jl" begin
-    # Write your tests here.
+@testset "hamiltonian" begin
+    include("test_hamiltonian.jl")
 end
