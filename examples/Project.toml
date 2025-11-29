@@ -1,0 +1,7 @@
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+QuantumIceBox = "07707f98-0760-4715-9a93-38eb460f0166"
+Yao = "5872b779-8223-5990-8dd0-5abbb0748c8c"
+
+[sources]
+QuantumIceBox = {rev = "main", url = ".."}
