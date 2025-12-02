@@ -17,9 +17,9 @@
     title: [Computing by Cooling],
     short-title: [Computing by Cooling],
     subtitle: [],
-    author: [Longli Zheng],
+    author: [Longli Zheng\ \ #text(size: 0.6em)[https://github.com/Br0kenSmi1e/QuantumIceBox.jl]],
     date: datetime.today(),
-    institution: [HKUST(GZ)],
+    institution: [AMAT, FUNH, HKUST(GZ)]
   ),
 )
 
@@ -78,6 +78,16 @@ canvas({
   content((wl + 2.4, -2 * sp), [$s_3 = not(s_1 and s_2)$])
 }))
 
+#place(
+  bottom + right,
+  dx: 0em, dy: 0.5em,
+  [
+    #text(size: 0.6em)[
+      Nielsen, M. A., & Chuang, I. L. (2010). _Quantum computation and quantum information_. Cambridge University Press.
+    ]
+  ]
+)
+
 == Computation by Ground State
 
 Another formalism is to encode the rules into ground states of certain Hamiltonians.
@@ -93,10 +103,10 @@ There are four items in the truth table of NAND logic:
     #table(
       columns: (64pt, 64pt, 64pt),
       table.header([$s_1$], [$s_2$], [$s_3$]),
-      [$1$], [$0$], [$1$],
-      [$0$], [$1$], [$1$],
-      [$1$], [$1$], [$0$],
       [$0$], [$0$], [$1$],
+      [$0$], [$1$], [$1$],
+      [$1$], [$0$], [$1$],
+      [$1$], [$1$], [$0$],
     )
   ],
   [
@@ -106,10 +116,21 @@ There are four items in the truth table of NAND logic:
     $
     which has 4-fold degenerate ground states
     $
-      (-1, -1, +1), (-1, +1, -1), (+1, -1, -1), (+1, +1, -1),
+      // (arrow.b -1, -1, +1), (-1, +1, -1), (+1, -1, -1), (+1, +1, -1),
+      s_1 s_2 s_3 = arrow.t arrow.t arrow.b, arrow.t arrow.b arrow.b, arrow.b arrow.t arrow.b, arrow.b arrow.b arrow.t
     $
-    that corresponds to the 4 items in the truth table (map $-1$ to $1$ and $+1$ to $0$).
+    that corresponds to the 4 items in the truth table (map $arrow.b$ to $1$ and $arrow.t$ to $0$).
   ],
+)
+
+#place(
+  bottom + right,
+  dx: 0em, dy: 0.5em,
+  [
+    #text(size: 0.6em)[
+      Nguyen et al. _Quantum optimization with arbitrary connectivity using Rydberg atom arrays_. PRX Quantum, 4(1), p.010316.
+    ]
+  ]
 )
 
 == Computation by Annealing
@@ -136,9 +157,36 @@ $
 
 If the system is in the ground state of $H_D$ at time $t = 0$, and the evolution is sufficiently slow, we hope the system would remain in the ground state throughout the evolution.
 
-A frequently used choice is the transverse field Ising model $H_D = - sum_i X_i$ and the problem Hamiltonian $H_P = sum_i h_i Z_i + sum_(i j) J_(i j) Z_i Z_j$.
+#place(
+  bottom + right,
+  dx: 0em, dy: 0.5em,
+  [
+    #text(size: 0.6em)[
+      Rajak et al. _Quantum annealing: An overview_. Philosophical Transactions of the Royal Society A, 381(2241), p.20210417.
+    ]
+  ]
+)
 
 // numeric example
+== Numerical Simulation of QAA
+
+#grid(
+  columns: 2,
+  column-gutter: 1.5em,
+  [
+    $
+      H_D &= - (X_1 + X_2 + X_3)\
+      H_P &= Z_1 Z_2 + 2Z_2 Z_3 + 2Z_1 Z_3 \ & quad + Z_1 + Z_2 + 2Z_3\
+      s &= v t
+    $
+
+  ],
+  [
+    #figure(
+      image("nand_qa.pdf", height: 95%)
+    )
+  ],
+)
 
 == Quantum Ice Box Algorithm
 
@@ -152,10 +200,42 @@ $
 
 In this algorithm, the Hamiltonian is *time-independent*.
 
+#place(
+  bottom + right,
+  dx: 0em, dy: 0.5em,
+  [
+    #text(size: 0.6em)[
+      Feng, J.J., Wu, B. and Wilczek, F. _Quantum computing by coherent cooling_. Physical Review A, 105(5), p.052601.
+    ]
+  ]
+)
+
+
 // numeric example
+== Numerical Simulation of Quantum Ice Box
+#grid(
+  columns: 2,
+  column-gutter: 0.5em,
+  [
+    $
+      H_s &= Z_1 Z_2 + 2Z_2 Z_3 + 2Z_1 Z_3 \ & quad + Z_1 + Z_2 + 2Z_3\
+      H_b &= - (bold(S)_4 dot.c bold(S)_5 + bold(S)_5 dot.c bold(S)_6 + bold(S)_6 dot.c bold(S)_4)\
+      H_i &= -lambda (X_1 X_4 + X_2 X_5 + X_3 X_6)
+    $
+  ],
+  [
+    #figure(
+      image("nand_cc.pdf", height: 90%)
+    )
+  ]
+)
 
 == Discussion and Outlook
 
+Summary:
 - Annealing formalism is introduced.
 - Quantum annealing vs quantum ice box.
-- finite size bath and finite coupling (non-Markovian)
+
+Outlook:
+- Scaling law of bath size with problem size.
+- Abstraction of finite size bath and finite coupling (non-Markovian memory kernel).
